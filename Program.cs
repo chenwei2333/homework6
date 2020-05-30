@@ -5,10 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
-
-
-
-namespace _6_1
+namespace _6_2
 {
     public class Order
     {
@@ -149,7 +146,7 @@ namespace _6_1
         public Order neworder;
         public void Init()
         {
-            orderList.Sort((Order h1, Order h2) =>                   //按订单总值进行降序排列
+            orderList.Sort((Order h1, Order h2) =>                   
             {
                 return h2.Orderprice.CompareTo(h1.Orderprice);
             });
@@ -190,12 +187,12 @@ namespace _6_1
             Console.WriteLine("删除成功：" + "【订单号" + order.orderNumber + "】" + orderitem.itemName + " 价格: " + orderitem.itemPrice);
             Console.WriteLine();
             order.itemlist.Remove(orderitem);
-            orderList.Sort((Order h1, Order h2) =>                   //按订单总值进行降序排列
+            orderList.Sort((Order h1, Order h2) =>                  
             {
                 return h2.Orderprice.CompareTo(h1.Orderprice);
             });
         }
-        public void ItemChange(Order order, string name, int num)//修改物品的购买数量
+        public void ItemChange(Order order, string name, int num)
         {
             IEnumerable<OrderItem> query =
                 from s in order.itemlist
@@ -205,12 +202,12 @@ namespace _6_1
             orderitem.SetItemnum(num);
             Console.WriteLine("修改成功：" + "【订单号" + order.orderNumber + "】" + orderitem.itemName + " 价格: " + orderitem.itemPrice + " 数量：" + orderitem.itemNum);
             Console.WriteLine();
-            orderList.Sort((Order h1, Order h2) =>                   //按订单总值进行降序排列
+            orderList.Sort((Order h1, Order h2) =>                   
             {
                 return h2.Orderprice.CompareTo(h1.Orderprice);
             });
         }
-        public OrderItem SerchName(Order order, string itemname)//根据名字查询物品
+        public OrderItem SerchName(Order order, string itemname)
         {
             IEnumerable<OrderItem> query =
                 from s in order.itemlist
@@ -221,7 +218,7 @@ namespace _6_1
             Console.WriteLine("查询成功：" + "【订单号" + order.orderNumber + "】" + orderitem.itemName + " 价格: " + orderitem.itemPrice + " 数量：" + orderitem.itemNum);
             return orderitem;
         }
-        public List<OrderItem> SerchPrice(Order order, int price)//根据价格查询物品
+        public List<OrderItem> SerchPrice(Order order, int price)
         {
             List<OrderItem> list = new List<OrderItem>();
             IEnumerable<OrderItem> query =
@@ -312,4 +309,3 @@ namespace _6_1
         }
     }
 }
-
